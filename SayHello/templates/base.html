@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-Hant=TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="{{ url_for('static', filename='/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='/css/style.css') }}" rel="stylesheet" type="text/css">
+
+    <title>{% block title %}Say Hello!!{% endblock %}</title>
+</head>
+<body>
+<main class="container">
+    <header>
+        <p class="text-center display-4">
+            <a href="{{ url_for('index') }}" class="text-success">
+                <strong>Say Hello</strong>
+            </a>
+            <small style="font-size: 24px" class="text-muted">to the world!</small>
+        </p>
+    </header>
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">&times;</button>
+        </div>
+    {% endfor %}
+    {% block content %}{% endblock %}
+    <footer class="text-center">
+        {% block footer %}
+            <p><a id="bottom" href="#" title="Go Top">&uarr;</a></p>
+        {% endblock %}
+    </footer>
+</main>
+<!-- Bootstrap Bundle with Popper -->
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% from 'macros.html' import form_field %}
+{% block content %}
+    {# 留言區 #}
+    <div class="hello-form">
+        <form method="post" action="{{ request.full_path }}">
+            {{ form.csrf_token() }}
+            <div class="mb-3 form-group required">
+                {{ form_field(form.name, class='form-control') }}
+            </div>
+            <div class="mb-3 form-group required">
+                {{ form_field(form.body, class='form-control') }}
+            </div>
+            {{ form.submit(class='btn btn-secondary') }}
+        </form>
+    </div>
+    {# 留言列表 #}
+    <p class="h5">{{ messages|lenght }} messages
+    <small class="float-end"><a href="#bottom" title="Go Bottom">&darr;</a></small>
+    </p>
+    <div class="list-group">
+    {% for message in messages %}
+
+    {% endfor %}
+    </div>
+{% endblock %}
